@@ -1,2 +1,2 @@
 # Stock Chart Analysis
-An interactive chart made using yahoo finance data and Plotly. 
+An interactive stock chart made with  Dash and Plotly. 
