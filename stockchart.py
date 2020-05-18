@@ -49,7 +49,6 @@ app.layout = html.Div([
 
 def update_graph(n_clicks, time_value, input_symbol_value):
 
-	# symbol="PTON"
 	ticker=yf.Ticker(input_symbol_value)
 	OHLCV_data=pd.DataFrame()
 
@@ -65,7 +64,6 @@ def update_graph(n_clicks, time_value, input_symbol_value):
 	columns = OHLCV_data.columns
 	columns = [x.lower() for x in columns]
 	OHLCV_data.columns = columns
-	# OHLCV_data["date"]= OHLCV_data.sort_values(by="date")#key=lambda date: datetime.strptime(date, "%d-%b-%y"))
 
 #########################################################################################
 #########################################################################################
@@ -120,12 +118,8 @@ def update_graph(n_clicks, time_value, input_symbol_value):
 	y=OHLCV_data["date"].iloc[-1].year
 	m=OHLCV_data["date"].iloc[-1].month
 	d=OHLCV_data["date"].iloc[-1].day
-	# mask = (OHLCV_data["date"] <= timestamp)
-	# print(type(timestamp))
-	# print(OHLCV_data["date"].iloc[0])
-	# print(type(OHLCV_data["date"].iloc[0]))
-	# OHLCV_data["date"] = OHLCV_data["date"].dt.strftime("%m-%d-%Y")
-	# print(OHLCV_data["date"].iloc[0])
+
+
 	twoyr = datetime.date.today() + relativedelta(years=-2)
 	oneyr = datetime.date.today() + relativedelta(years=-1)
 	six_months = datetime.date.today() + relativedelta(months=-6)
@@ -176,7 +170,6 @@ def update_graph(n_clicks, time_value, input_symbol_value):
 	rsidownR =[30,30]
 	rsimidL =[OHLCV_data.loc[mask,"date"].iloc[0],OHLCV_data.loc[mask,"date"].iloc[-1]]
 	rsimidR =[50,50]
-	# fillxyUP=OHLCV_data.loc[OHLCV_data["RSI"]>=70]]
 
 	fig = make_subplots(rows=3,cols=1,shared_xaxes=True,vertical_spacing=0.02, row_width=[0.2,0.6,0.2])
 
@@ -187,7 +180,6 @@ def update_graph(n_clicks, time_value, input_symbol_value):
 	        hoverlabel=dict(font=dict(size=20),align="right"),
 	        x=OHLCV_data["date"].loc[mask],
 	        y=OHLCV_data["RSI"].loc[mask],
-			# marker_color=OHLCV_data["color"].loc[mask]
 	        line=dict(color="black", width=3),
 	        yaxis="y1",hovertemplate = "RSI: %{y:.2f}"+ "<extra></extra>"),row=1,col=1
 	)
@@ -333,10 +325,6 @@ def update_graph(n_clicks, time_value, input_symbol_value):
 	                 tickfont=dict(family="Arial", color="black", size=14)
 	                 ))
 
-
-	# fig.update_xaxes(type="category",nticks=25,tickangle=45,
-	#                  showline=True, linewidth=2, linecolor="black", mirror=True,
-	#                  showgrid=True, gridwidth=.5, gridcolor="black", tickfont=dict(family="Arial", color="black", size=14))
 
 	fig.update_layout(
 	    legend=dict(
